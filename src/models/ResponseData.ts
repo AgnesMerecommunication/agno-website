@@ -5,4 +5,5 @@ export type ResponseData = {
     products : Product[],
     user? : User
     carte? : string
+    carteInformation? : any
   }

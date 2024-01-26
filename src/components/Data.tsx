@@ -34,7 +34,8 @@ export default function Page({slug} : {slug: string}){
         let responseData : ResponseData = {
           products : data.products,
           user : data.account,
-          carte : data.businessCardPicture
+          carte : data.businessCardPicture,
+          carteInformation : data.businessCard
         }
         setUser(responseData.user);
         setCarte(responseData.carte);
@@ -62,7 +63,7 @@ export default function Page({slug} : {slug: string}){
                     className="sm:hidden"
                     />
                     <NavbarBrand>
-                    <p className="font-bold text-inherit text-3xl">{user?.firstName} {user?.lastName}</p>
+                      <p className="font-bold text-inherit md:text-3xl text-xl">{user?.firstName} {user?.lastName}</p>
                     </NavbarBrand>
                 </NavbarContent>
                 <NavbarContent className="hidden sm:flex gap-4  text-white" justify="end">
@@ -107,10 +108,9 @@ export default function Page({slug} : {slug: string}){
                 <img src={user?.picture} alt=""  className="md:h-96 md:w-96 h-56 w-56 rounded-full md:ml-24" />
             </div>
             <div className="md:w-1/2 md:mt-32 mt-12">
-                <div className="md:text-6xl text-4xl font-bold">{user?.firstName} {user?.lastName}</div>
-                <div className="mt-4  md:text-3xl text-2xl">{user?.businessName ? user?.businessName : ''}</div>
-                <div className="grid gap-2 md:grid-cols-4  grid-cols-2 mt-5 text-xl px-5" id="contact">
-                    
+                <div className="md:text-6xl text-4xl font-bold md:text-left text-center">{user?.firstName} {user?.lastName}</div>
+                <div className="mt-4  md:text-3xl text-xl">{user?.businessName ? user?.businessName : ''}</div>
+                <div className="grid gap-2 md:grid-cols-4  grid-cols-2 mt-5 text-xl  pr-5 md:pl-0 pl-5" id="contact">
                     <div onClick={()=>openLink("mailto: " + user?.email)}
                      className="bg-[#ff6201] flex rounded-full px-2 py-1 items-center space-x-2 cursor-pointer">
                         <BsEnvelope/> <span>Email</span>
@@ -144,7 +144,7 @@ export default function Page({slug} : {slug: string}){
             </div>
            
         </div>
-        <div> <div className="flex justify-center font-bold md:mt-24 mt-12 md:text-6xl text-5xl">Carte de visite</div></div>
+        <div> <div className="flex justify-center font-bold md:mt-24 mt-12 md:text-6xl text-3xl">Carte de visite</div></div>
         <div  className="flex justify-center md:mt-12 mt-6 md:ml-12 mr-1  pb-12" id="carte">
             <img src={carte} alt=""/>
                 {/*<div className="bg-white rounded-md text-black flex items-center 
@@ -154,7 +154,7 @@ export default function Page({slug} : {slug: string}){
                 </div>*/}
         </div>
         <div className="mt-0">
-            <div> <div className="flex justify-center font-bold  md:text-6xl text-5xl">Catalogue</div></div>   
+            <div> <div className="flex justify-center font-bold  md:text-6xl text-3xl">Catalogue</div></div>   
         </div>
         <div className="flex justify-center" id="catalogue"> 
             <div className="md:w-[900px] w-full  px-2 py-16 sm:px-0  mr-4 ">
