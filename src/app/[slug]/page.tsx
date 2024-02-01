@@ -3,6 +3,8 @@ import { baseUrl } from "@/components/url";
 import { User } from "@/models/User";
 import axios from "axios";
 import { Metadata } from "next";
+import { ThemeProvider } from "next-themes"
+
 
   
     type Props = {
@@ -26,6 +28,6 @@ import { Metadata } from "next";
 export default  function Page({ params }: { params: { slug: string } }){
 
     return (
-        <Data slug={params.slug}/>
+         <Data slug={params.slug}/>
     )
 }
