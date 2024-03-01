@@ -1,6 +1,5 @@
 "use client"
 
-import {ThemeProvider} from 'next-themes';
 import { useState, useEffect } from 'react'
 
 type Props = {
