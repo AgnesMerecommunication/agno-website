@@ -13,7 +13,7 @@ Nous comprenons que vous puissiez souhaiter supprimer votre compte Agno. Pour ce
 <ol className="list-decimal mb-2">
     <li>Connectez-vous à votre compte Agno.</li>
     <li>Sur la page d'Acceuil cliquer sur votre photo de profil   <a href="agnoapp://profil" className="text-blue-500 md:hidden"> ou cliquer ici</a> </li>
-    <li>Cliquez sur "Supprimer mon compte".</li>
+    <li>Cliquez sur &apos;Supprimer mon compte&apos;.</li>
     <li>Confirmez votre demande de suppression.</li>
 </ol>
 
