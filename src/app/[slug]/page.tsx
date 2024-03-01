@@ -3,7 +3,6 @@ import { baseUrl } from "@/components/url";
 import { User } from "@/models/User";
 import axios from "axios";
 import { Metadata } from "next";
-import { ThemeProvider } from "next-themes"
 
 
   
