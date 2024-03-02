@@ -2,7 +2,7 @@
 
 export default function DeleteCompte(){
     return(
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center md:h-screen">
             <div className="md:w-1/2 w-full mx-12">
                 <div className="font-bold text-2xl text-center mb-2">Suppression de compte pour Agno</div>
 Nous comprenons que vous puissiez souhaiter supprimer votre compte Agno. Pour ce faire, veuillez suivre les étapes ci-dessous :
