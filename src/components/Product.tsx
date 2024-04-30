@@ -32,17 +32,17 @@ export default function ProductCard({image, title , description, email , whatsap
         onClose();
     }
     return(
-        <div className="text-black">
+        <div className="text-black  p-3 rounded-xl">
             <div>
-                <img src={image} className="rounded-md" alt="" />
+                <img src={image} className="rounded-md md:h-[250px] w-full" alt="" />
             </div>
-            <div className="text-center font-bold h-12 md:text-sm text-xs">
+            <div className="text-center font-bold h-12 mt-2 md:text-sm text-xs text-white flex items-center justify-center">
                 {truncateData(title)}
             </div>
             <div>
                 <div onClick={()=>{
                     onOpen();
-                }} className="p-2 text-center shadow rounded-md cursor-pointer w-full bg-[#ff6201] font-bold text-white">Voir</div>
+                }} className="p-2 text-center shadow rounded-md cursor-pointer w-full hover:bg-[#ff6201] border border-white font-bold text-white">Voir</div>
                 <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                     <ModalContent>
                     {(onClose) => (
