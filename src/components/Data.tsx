@@ -1,5 +1,5 @@
 "use client"
-import { BsFacebook, BsWhatsapp, BsEnvelope, BsTelephone, BsLinkedin, BsTwitter, BsTwitterX, BsInstagram, BsSun, BsMoon, BsMap} from "react-icons/bs";
+import { BsFacebook, BsWhatsapp, BsEnvelope, BsTelephone, BsLinkedin, BsTwitter, BsTwitterX, BsInstagram, BsSun, BsMoon, BsMap, BsMessenger} from "react-icons/bs";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem} from "@nextui-org/react";
 import { Tab } from '@headlessui/react'
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import axios from "axios";
 import { baseUrl } from "./url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
+import { BiSolidMessage } from "react-icons/bi";
 
 //@ts-ignore
 function classNames(...classes) {
@@ -105,6 +106,10 @@ export default function Page({slug} : {slug: string}){
                  </div>
                  
                  <div className="md:mt-12 mt-5 shadow-xl rounded-xl md:p-12 p-4 bg-gradient-to-tr from-orange-700 via-orange-700 to-orange-400 grid gap-4 md:grid-cols-5 grid-cols-4">
+                 <div onClick={()=>openLink("sms:" + user?.phone)} className="
+                              bg-orange-600 flex text-center justify-center  rounded-full px-2 py-1 items-center  space-x-2  cursor-pointer">
+                                      <BiSolidMessage/> <span className="hidden md:flex">SMS</span>
+                              </div> 
                  {user?.facebook &&  
                               <div onClick={()=>openLink(user?.facebook ?? '')} className="bg-orange-600 flex
                               rounded-full px-2 text-center justify-center  py-1 items-center  space-x-2  cursor-pointer">
