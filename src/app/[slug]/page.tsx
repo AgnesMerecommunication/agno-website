@@ -14,10 +14,11 @@ import { Metadata } from "next";
       { params }: Props
     ): Promise<Metadata> {
       const slug = params.slug
-      const response = await   axios.get(`${baseUrl}accounts/${slug}/web`);
+      
+      const response = await   axios.post(`${baseUrl}accounts/key/web/scan`,{key : slug});
       let user : User = response.data.data.account
       return {
-        title:user ? (user.firstName + " " + user.lastName) : '' ,
+        title:user ? (user.firstName) : '' ,
         description: "Découvrez mon parcours, mes services sur mesure et les produits innovants que je propose, en visitant mon site web.",
         applicationName  : "Agno",
         robots : "Agno",
