@@ -1,6 +1,5 @@
 "use client"
 import { BsFacebook, BsWhatsapp, BsEnvelope, BsTelephone, BsLinkedin, BsTwitter, BsTwitterX, BsInstagram, BsSun, BsMoon, BsMap, BsMessenger} from "react-icons/bs";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem} from "@nextui-org/react";
 import { Tab } from '@headlessui/react'
 import { useEffect, useState } from "react";
 import ProductCard from "./Product";
@@ -11,6 +10,8 @@ import { baseUrl } from "./url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
 import { BiSolidMessage } from "react-icons/bi";
+import { saveAs } from 'file-saver';
+
 
 //@ts-ignore
 function classNames(...classes) {
@@ -29,6 +30,7 @@ export default function Page({slug} : {slug: string}){
     const [categories, setCategories] = useState<Categorie>({Produits : [],Services : [],Catalogues : []})
     const [color, setColor] = useState<string | undefined>();
     const [textColor, setTextColor] = useState<string | undefined>("#FFFFFF");
+    const [vcf , setVcf]= useState<string | undefined>();
     useEffect(()=>{
       axios.post(`${baseUrl}accounts/key/web/scan`,{key : slug}).then((response)=>{
         let data = response.data.data;
@@ -41,10 +43,12 @@ export default function Page({slug} : {slug: string}){
           products : data.products,
           user : data.account,
           carte : data.businessCardPicture,
-          carteInformation : data.businessCard
+          carteInformation : data.businessCard,
+          vcf : data.vcf
         }
         setUser(responseData.user);
         setCarte(responseData.carte);
+        setVcf(responseData.vcf);
         if(responseData.products){
           setCategories({
             Produits: responseData.products.filter((item)=>item.type == "PRODUCT"),
@@ -53,6 +57,7 @@ export default function Page({slug} : {slug: string}){
           })
 
         }
+        
       }).catch(error=>{
         setColor("#242834");
       });
@@ -60,9 +65,21 @@ export default function Page({slug} : {slug: string}){
       const openLink = (link : string)=>{
         router.push(link);
       }
+
+      const openVcf = ()=>{
+         // Créer un nouveau Blob contenant le texte
+      const blob = new Blob([vcf ?? ''], { type: "text/plain;charset=utf-8" });
+
+      // Enregistrer le fichier en tant que "example.txt"
+      saveAs(blob, slug +".vcf");
+
+      }
+      const openCarte = () =>{
+        window.open(carte, '_blank');
+      }
       return(
         <div 
-        className={`bg-orange-800	 md:px-24 px-2 md:pt-12 pt-8 pb-12 text-white`}>
+        className={`bg-orange-800	 text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-white`}>
            <div className="shadow-xl md:px-12 px-2 md:py-20 py-6 bg-gradient-to-tr from-orange-700 via-orange-700 to-orange-400 rounded-xl flex md:flex-row flex-row-reverse">
               <div className="md:w-3/5 w-1/2"> 
                 <div className="md:text-7xl hidden md:flex">AGNO</div>
@@ -70,26 +87,27 @@ export default function Page({slug} : {slug: string}){
                 <div className="md:text-2xl text-xs">{user?.businessName}</div>
                 <div className="md:text-xl space-y-2 text-sm ">
                 <div onClick={()=>openLink("mailto: " + user?.email)}
-                        className=" md:mt-12 md:px-2 py-1 space-x-2 cursor-pointer  text-sm md:text-base flex items-center ">
-                            <BsEnvelope className=""/> <span>{user?.email}</span>
+                        className=" md:mt-12 md:px-2 py-1 space-x-2 cursor-pointer   text-xs md:text-base flex items-center">
+                            <BsEnvelope className=""/> <span className="truncate">{user?.email}</span>
                 </div>
                 <div onClick={()=>openLink("tel: " + user?.email)}
-                        className="md:px-2 py-1 space-x-2 cursor-pointer text-sm md:text-base flex items-center ">
-                             <BsTelephone /> <span>{user?.phone}</span>
+                        className="md:px-2 py-1 space-x-2 cursor-pointer text-xs md:text-base flex items-center ">
+                             <BsTelephone /> <span className="truncate text-wrap">{user?.phone}</span>
                 </div>
   
                     {user?.address && <div onClick={()=>openLink("mailto: " + user?.email)}
-                        className="flex md:px-2 py-1 items-center space-x-2 text-sm md:text-base cursor-pointer">
-                            <BsMap/> <span>{user?.address}</span>
+                        className="flex md:px-2 py-1 items-center space-x-2 text-xs md:text-base cursor-pointer">
+                            <BsMap/> <span className="truncate text-wrap">{user?.address}</span>
                         </div>}
                   
                 </div>
-                
-               <div className="md:mt-12 mt-7">
-               <a href={carte}   className="border rounded-md p-4 hover:bg-orange-600 text-xs md:text-xl" download>
+                <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md p-4 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
+                           Telecharger mon contact
+                    </div>
+                <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md p-4 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
                           Telercharger la carte
-                </a>
-               </div>
+                  </div>
+               
               </div>
 
               <div className="md:w-2/5 w-1/2 p-2">
