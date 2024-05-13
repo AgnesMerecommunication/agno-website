@@ -101,10 +101,10 @@ export default function Page({slug} : {slug: string}){
                         </div>}
                   
                 </div>
-                <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md p-4 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
+                <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2 cursors-pointer">
                            Telecharger mon contact
                     </div>
-                <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md p-4 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
+                <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
                           Telercharger la carte
                   </div>
                
