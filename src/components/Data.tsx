@@ -69,9 +69,21 @@ export default function Page({slug} : {slug: string}){
       const openVcf = ()=>{
          // Créer un nouveau Blob contenant le texte
       const blob = new Blob([vcf ?? ''], { type: "text/plain;charset=utf-8" });
-
+      var vcfURL = URL.createObjectURL(blob);
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+        // Si c'est un appareil mobile, ouvrez le fichier VCF dans une nouvelle fenêtre
+        window.open(vcfURL, '_blank');
+    } else {
+        // Si c'est un ordinateur de bureau, téléchargez le fichier VCF
+        var a = document.createElement('a');
+        a.href = vcfURL;
+        a.download = slug + '.vcf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
       // Enregistrer le fichier en tant que "example.txt"
-      saveAs(blob, slug +".vcf");
+     // saveAs(blob, slug +".vcf");
 
       }
       const openCarte = () =>{
@@ -90,21 +102,21 @@ export default function Page({slug} : {slug: string}){
                         className=" md:mt-12 md:px-2 py-1 space-x-2 cursor-pointer   text-xs md:text-base flex items-center">
                             <BsEnvelope className=""/> <span className="truncate">{user?.email}</span>
                 </div>
-                <div onClick={()=>openLink("tel: " + user?.email)}
+                  <div onClick={()=>openLink("tel: " + user?.email)}
                         className="md:px-2 py-1 space-x-2 cursor-pointer text-xs md:text-base flex items-center ">
                              <BsTelephone /> <span className="truncate text-wrap">{user?.phone}</span>
-                </div>
+                  </div>
   
                     {user?.address && <div onClick={()=>openLink("mailto: " + user?.email)}
                         className="flex md:px-2 py-1 items-center space-x-2 text-xs md:text-base cursor-pointer">
                             <BsMap/> <span className="truncate text-wrap">{user?.address}</span>
                         </div>}
                   
-                </div>
-                <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2 cursors-pointer">
+                  </div>
+                  <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2 cursors-pointer">
                            Telecharger mon contact
-                    </div>
-                <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
+                  </div>
+                  <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
                           Telercharger la carte
                   </div>
                
