@@ -70,7 +70,8 @@ export default function Page({slug} : {slug: string}){
          // Créer un nouveau Blob contenant le texte
       const blob = new Blob([vcf ?? ''], { type: "text/plain;charset=utf-8" });
       var vcfURL = URL.createObjectURL(blob);
-      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      window.open(vcfURL, '_blank');
+     /* if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         // Si c'est un appareil mobile, ouvrez le fichier VCF dans une nouvelle fenêtre
         window.open(vcfURL, '_blank');
     } else {
@@ -81,7 +82,7 @@ export default function Page({slug} : {slug: string}){
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-    }
+    }*/
       // Enregistrer le fichier en tant que "example.txt"
      // saveAs(blob, slug +".vcf");
 
