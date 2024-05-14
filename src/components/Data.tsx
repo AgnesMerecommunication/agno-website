@@ -67,9 +67,7 @@ export default function Page({slug} : {slug: string}){
       }
       const openVcf = ()=>{
         var userAgent = navigator.userAgent.toLowerCase(); 
-        var Android = userAgent.indexOf("android") > -1; 
-        if(!Android) { 
-          var file = new File([vcf ?? ''], "sample.vcf", {type: 'text/vcard'});
+        var file = new File([vcf ?? ''], "sample.vcf", {type: 'text/vcard'});
           var filesArray = [file];
           var shareData = { files: filesArray };
           if (navigator.canShare && navigator.canShare(shareData)) {
@@ -84,6 +82,9 @@ export default function Page({slug} : {slug: string}){
           } else {
           alert("Your system doesn't support sharing files.");
           }
+        var Android = userAgent.indexOf("android") > -1; 
+        if(!Android) { 
+          
       
         }else {
           var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
