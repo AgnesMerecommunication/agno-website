@@ -66,60 +66,8 @@ export default function Page({slug} : {slug: string}){
         router.push(link);
       }
       const openVcf = ()=>{
-        var userAgent = navigator.userAgent.toLowerCase(); 
-        var file = new File([vcf ?? ''], "sample.vcf", {type: 'text/vcard'});
-          var filesArray = [file];
-          var shareData = { files: filesArray };
-          if (navigator.canShare && navigator.canShare(shareData)) {
-          // Adding title afterwards as navigator.canShare just
-          // takes files as input
-          //@ts-ignore
-           shareData.title = "vcard";
-          navigator.share(shareData)
-          .then(() => console.log('Share was successful.'))
-          .catch((error) => console.log('Sharing failed', error));
-      
-          } else {
-          alert("Your system doesn't support sharing files.");
-          }
-        var Android = userAgent.indexOf("android") > -1; 
-        if(!Android) { 
-          
-      
-        }else {
-          var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
-          window.location.href = contactsUrl;
-        } 
-      //  var encodedVCF = encodeURIComponent(vcf ?? '');
-
-    // URL pour ouvrir l'applicatio n de contacts
-    //var contactsURL = "data:text/vcard," + encodedVCF;
-
-    // Ouvrir l'application de contacts
-   // window.open(contactssURL, "_blank");
-
-
- /* 
-         // Créer un nouveau Blob contenant le texte
-      const blob = new Blob([vcf ?? ''], { type: "text/plain;charset=utf-8" });
-      var vcfURL = URL.createObjectURL(blob);
-      window.open(vcfURL, '_blank');
-      
-    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-        // Si c'est un appareil mobile, ouvrez le fichier VCF dans une nouvelle fenêtre
-        window.open(vcfURL, '_blank');
-    } else {
-        // Si c'est un ordinateur de bureau, téléchargez le fichier VCF
-        var a = document.createElement('a');
-        a.href = vcfURL;
-        a.download = slug + '.vcf';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    }*/
-      // Enregistrer le fichier en tant que "example.txt"
-     // saveAs(blob, slug +".vcf");
-
+        var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
+        window.location.href = contactsUrl;
       }
       const openCarte = () =>{
         window.open(carte, '_blank');
