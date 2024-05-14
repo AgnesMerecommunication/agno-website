@@ -65,24 +65,38 @@ export default function Page({slug} : {slug: string}){
       const openLink = (link : string)=>{
         router.push(link);
       }
-      function isMobile() {
-        var match = window.matchMedia;
-        if(match) {
-            var mq = match("(pointer:coarse)");
-            return mq.matches;
-        }
-        return false;
-    }
       const openVcf = ()=>{
+        var userAgent = navigator.userAgent.toLowerCase(); 
+        var Android = userAgent.indexOf("android") > -1; 
+        if(!Android) { 
+          var file = new File([vcf ?? ''], "sample.vcf", {type: 'text/vcard'});
+          var filesArray = [file];
+          var shareData = { files: filesArray };
+          if (navigator.canShare && navigator.canShare(shareData)) {
+          // Adding title afterwards as navigator.canShare just
+          // takes files as input
+          //@ts-ignore
+           shareData.title = "vcard";
+          navigator.share(shareData)
+          .then(() => console.log('Share was successful.'))
+          .catch((error) => console.log('Sharing failed', error));
+      
+          } else {
+          alert("Your system doesn't support sharing files.");
+          }
+      
+        }else {
+          var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
+          window.location.href = contactsUrl;
+        } 
       //  var encodedVCF = encodeURIComponent(vcf ?? '');
 
-    // URL pour ouvrir l'application de contacts
+    // URL pour ouvrir l'applicatio n de contacts
     //var contactsURL = "data:text/vcard," + encodedVCF;
 
     // Ouvrir l'application de contacts
-   // window.open(contactsURL, "_blank");
-    var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
-    window.location.href = contactsUrl;
+   // window.open(contactssURL, "_blank");
+
 
  /* 
          // Créer un nouveau Blob contenant le texte
