@@ -65,13 +65,29 @@ export default function Page({slug} : {slug: string}){
       const openLink = (link : string)=>{
         router.push(link);
       }
-
+      function isMobile() {
+        var match = window.matchMedia;
+        if(match) {
+            var mq = match("(pointer:coarse)");
+            return mq.matches;
+        }
+        return false;
+    }
       const openVcf = ()=>{
+        var encodedVCF = encodeURIComponent(vcf ?? '');
+
+    // URL pour ouvrir l'application de contacts
+    var contactsURL = "data:text/vcard," + encodedVCF;
+
+    // Ouvrir l'application de contacts
+    window.open(contactsURL, "_blank");
+ /* 
          // Créer un nouveau Blob contenant le texte
       const blob = new Blob([vcf ?? ''], { type: "text/plain;charset=utf-8" });
       var vcfURL = URL.createObjectURL(blob);
       window.open(vcfURL, '_blank');
-     /* if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+      
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
         // Si c'est un appareil mobile, ouvrez le fichier VCF dans une nouvelle fenêtre
         window.open(vcfURL, '_blank');
     } else {
