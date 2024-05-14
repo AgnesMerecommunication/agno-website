@@ -74,13 +74,16 @@ export default function Page({slug} : {slug: string}){
         return false;
     }
       const openVcf = ()=>{
-        var encodedVCF = encodeURIComponent(vcf ?? '');
+      //  var encodedVCF = encodeURIComponent(vcf ?? '');
 
     // URL pour ouvrir l'application de contacts
-    var contactsURL = "data:text/vcard," + encodedVCF;
+    //var contactsURL = "data:text/vcard," + encodedVCF;
 
     // Ouvrir l'application de contacts
-    window.open(contactsURL, "_blank");
+   // window.open(contactsURL, "_blank");
+    var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
+    window.location.href = contactsUrl;
+
  /* 
          // Créer un nouveau Blob contenant le texte
       const blob = new Blob([vcf ?? ''], { type: "text/plain;charset=utf-8" });
