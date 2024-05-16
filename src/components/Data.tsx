@@ -67,7 +67,7 @@ export default function Page({slug} : {slug: string}){
       }
       const openVcf = ()=>{
         var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
-        window.location.href = contactsUrl;
+        window.location.href = contactsUrl; 
       }
       const openCarte = () =>{
         window.open(carte, '_blank');
