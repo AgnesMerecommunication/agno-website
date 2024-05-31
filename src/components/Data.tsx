@@ -10,7 +10,6 @@ import { baseUrl } from "./url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
 import { BiSolidMessage } from "react-icons/bi";
-import { saveAs } from 'file-saver';
 
 
 //@ts-ignore
