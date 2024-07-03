@@ -25,7 +25,8 @@ export default function ProductCard({image, title , description, email , whatsap
     }
     const openLink = ()=>{
         if(whatsapp != null){
-            router.push("https://wa.me/" +whatsapp+ "/?text=Bonjour, j'espère que vous allez bien. Je viens de voire " + title + " sur votre site web. Pourrions-nous échanger?");
+            var URL = "https://wa.me/" +whatsapp+ "/?text=Bonjour, j'espère que vous allez bien. Je viens de voire " + title + " sur votre site web. Pourrions-nous échanger?";
+            window.open(URL, '_blank');
         }else {
             router.push("mailto: " + email);
         }

@@ -178,7 +178,9 @@ export default function Page({slug} : {slug: string}){
                           {posts.length == 0 && <div className="flex justify-center  text-black font-bold">Aucun items disponible</div>}
                         <ul className="grid gap-4 md:grid-cols-3 grid-cols-2">
                             {posts.map((post, index) => (
-                            <ProductCard key={index} image={post.picture} title={post.title} description={post.description}/>
+                            <ProductCard key={index} whatsapp={user?.whatsapp} 
+                            image={post.picture} title={post.title} 
+                            description={post.description} email={user?.email}/>
                             ))}
                         </ul>
                         </Tab.Panel>

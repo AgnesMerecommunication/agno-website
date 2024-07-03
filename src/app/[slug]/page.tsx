@@ -2,10 +2,7 @@ import Data from "@/components/Data";
 import { baseUrl } from "@/components/url";
 import { User } from "@/models/User";
 import axios from "axios";
-import { Metadata } from "next";
-
-
-  
+import { Metadata } from "next";  
     type Props = {
       params: { slug: string }
     }
