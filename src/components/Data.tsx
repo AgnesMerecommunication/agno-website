@@ -10,6 +10,7 @@ import { baseUrl } from "./url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
 import { BiSolidMessage } from "react-icons/bi";
+import CatalogueCard from "./Catalogue";
 
 
 //@ts-ignore
@@ -19,14 +20,15 @@ function classNames(...classes) {
   type Categorie = {
     Produits: Product[],
     Services:  Product[],
-    Catalogues: Product[]
+    Catalogues: Product[],
+    Portfolio : Product[]
   }
 export default function Page({slug} : {slug: string}){
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [user, setUser] = useState<User>();
     const [carte , setCarte] = useState<string>();
-    const [categories, setCategories] = useState<Categorie>({Produits : [],Services : [],Catalogues : []})
+    const [categories, setCategories] = useState<Categorie>({Produits : [],Services : [], Portfolio : [],Catalogues : []})
     const [color, setColor] = useState<string | undefined>();
     const [textColor, setTextColor] = useState<string | undefined>("#FFFFFF");
     const [vcf , setVcf]= useState<string | undefined>();
@@ -52,11 +54,10 @@ export default function Page({slug} : {slug: string}){
           setCategories({
             Produits: responseData.products.filter((item)=>item.type == "PRODUCT"),
             Services: responseData.products.filter((item)=>item.type == "SERVICE"),
+            Portfolio :responseData.products.filter((item)=>item.type == "PORTFOLIO"),
             Catalogues: responseData.products.filter((item)=>item.type == "CATALOG"),
           })
-
         }
-        
       }).catch(error=>{
         setColor("#242834");
       });
@@ -76,13 +77,13 @@ export default function Page({slug} : {slug: string}){
         className={`bg-orange-800	 text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-white`}>
            <div className="shadow-xl md:px-12 px-2 md:py-20 py-6 bg-gradient-to-tr from-orange-700 via-orange-700 to-orange-400 rounded-xl flex md:flex-row flex-row-reverse">
               <div className="md:w-3/5 w-1/2"> 
-                <div className="md:text-7xl hidden md:flex">AGNO</div>
-                <div className="`font-bold mb-2 md:mt-12 mt-2 md:text-6xl text-sm">{user?.firstName}</div>
+                <div className="`font-bold mb-2 md:mt-12 mt-2 md:text-7xl text-sm">{user?.firstName}</div>
                 <div className="md:text-2xl text-xs">{user?.businessName}</div>
                 <div className="md:text-xl space-y-2 text-sm ">
                 <div onClick={()=>openLink("mailto: " + user?.email)}
                         className=" md:mt-12 md:px-2 py-1 space-x-2 cursor-pointer   text-xs md:text-base flex items-center">
-                            <BsEnvelope className=""/> <span className="truncate">{user?.email}</span>
+                            <BsEnvelope className=""/> 
+                            <span className="break-words whitespace-normal">{user?.email}</span>
                 </div>
                   <div onClick={()=>openLink("tel: " + user?.email)}
                         className="md:px-2 py-1 space-x-2 cursor-pointer text-xs md:text-base flex items-center ">
@@ -176,8 +177,10 @@ export default function Page({slug} : {slug: string}){
                         className={'rounded-xl p-3 bg-blue-900/20'}
                         >
                           {posts.length == 0 && <div className="flex justify-center  text-black font-bold">Aucun items disponible</div>}
-                        <ul className="grid gap-4 md:grid-cols-3 grid-cols-2">
+                        <ul className="grid gap-4 md:grid-cols-3 grid-cols-1">
                             {posts.map((post, index) => (
+                              post.title == "CATALOG" ?<CatalogueCard 
+                              whatsapp={user?.whatsapp} title={post.title} email={user?.email} image={post.picture}/> :
                             <ProductCard key={index} whatsapp={user?.whatsapp} 
                             image={post.picture} title={post.title} 
                             description={post.description} email={user?.email}/>
