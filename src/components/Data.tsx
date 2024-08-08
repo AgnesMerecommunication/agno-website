@@ -9,7 +9,7 @@ import axios from "axios";
 import { baseUrl } from "./url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
-import { BiSolidMessage } from "react-icons/bi";
+import { BiMessage, BiSolidMessage } from "react-icons/bi";
 import CatalogueCard from "./Catalogue";
 
 
@@ -74,10 +74,10 @@ export default function Page({slug} : {slug: string}){
       }
       return(
         <div 
-        className={`bg-orange-800	 text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-white`}>
-           <div className="shadow-xl md:px-12 px-2 md:py-20 py-6 bg-gradient-to-tr from-orange-700 via-orange-700 to-orange-400 rounded-xl flex md:flex-row flex-row-reverse">
+        className={`bg-white		 text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-slate-800`}>
+           <div className="shadow-xl md:px-12 px-2 md:py-20 py-6 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 rounded-xl flex md:flex-row flex-row-reverse">
               <div className="md:w-3/5 w-1/2"> 
-                <div className="`font-bold mb-2 md:mt-12 mt-2 md:text-7xl text-sm">{user?.firstName}</div>
+                <div className="`font-bold mb-2 md:mt-12 md:text-7xl text-sm">{user?.firstName}</div>
                 <div className="md:text-2xl text-xs">{user?.businessName}</div>
                 <div className="md:text-xl space-y-2 text-sm ">
                 <div onClick={()=>openLink("mailto: " + user?.email)}
@@ -96,71 +96,69 @@ export default function Page({slug} : {slug: string}){
                         </div>}
                   
                   </div>
-                  <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2 cursors-pointer">
+                  <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md md:p-4 p-2 bg-slate-300  text-xs md:text-xl md:w-1/2 cursor-pointer">
                            Telecharger mon contact
                   </div>
-                  <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md md:p-4 p-2 hover:bg-orange-600 text-xs md:text-xl md:w-1/2">
+                  <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md md:p-4 p-2 bg-slate-300 text-xs md:text-xl md:w-1/2 cursor-pointer">
                           Telercharger la carte
                   </div>
-               
               </div>
-
-              <div className="md:w-2/5 w-1/2 p-2">
+              <div className="md:w-2/5 w-1/2 p-2 flex justify-center items-center">
               <img src={user?.picture} alt="" 
-                     className="md:h-[500px] md:w-96  h-48 w-56 rounded-lg md:mr-24" />
+                     className="md:h-96 md:w-96  h-56 w-56 rounded-full" />
               </div>
            </div>
            
-           <div className="md:mt-12 mt-5 shadow-xl rounded-xl md:p-12 p-4 bg-gradient-to-tr from-orange-700 via-orange-700 to-orange-400 grid gap-4 md:grid-cols-5 grid-cols-4">
+           <div className="md:mt-12 mt-5 shadow-xl rounded-xl md:p-12 p-4 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 grid gap-4 md:grid-cols-5 grid-cols-4">
            <div onClick={()=>openLink("sms:" + user?.phone)} className="
-                        bg-orange-600 flex text-center justify-center  rounded-full px-2 py-1 items-center  space-x-2  cursor-pointer">
-                                <BiSolidMessage/> <span className="hidden md:flex">SMS</span>
+                        bg-slate-300 flex text-center justify-center  rounded-full px-2 py-1 items-center  space-x-2  cursor-pointer">
+                                <BiMessage className="text-yellow-500"/> <span className="hidden md:flex">SMS</span>
                         </div> 
-           {user?.facebook &&  
-                        <div onClick={()=>openLink(user?.facebook ?? '')} className="bg-orange-600 flex
+            {user?.facebook &&  
+                        <div onClick={()=>openLink(user?.facebook ?? '')} className="bg-slate-300 flex
                         rounded-full px-2 text-center justify-center  py-1 items-center  space-x-2  cursor-pointer">
-                            <BsFacebook/> <span className="hidden md:flex">Facebook</span>
+                            <BsFacebook className="text-blue-700"/> <span className="hidden md:flex">Facebook</span>
                         </div>} 
                         {user?.whatsapp && 
                         <div onClick={()=>openLink("https://wa.me/" + user?.whatsapp+ "/?text=Bonjour, j'espère que vous allez bien. J'ai pris votre numéro sur votre site web. Pourrions-nous échanger?")} className="
-                        bg-orange-600 flex text-center justify-center  rounded-full px-2 py-1 items-center  space-x-2  cursor-pointer">
-                                <BsWhatsapp/> <span className="hidden md:flex">Whatsapp</span>
+                        bg-slate-300 flex text-center justify-center  rounded-full px-2 py-1 items-center  space-x-2  cursor-pointer">
+                                <BsWhatsapp className="text-green-700"/> <span className="hidden md:flex">Whatsapp</span>
                         </div>  } 
                         {user?.linkedin &&  
-                        <div onClick={()=>openLink(user?.linkedin ?? '')} className="bg-orange-600 flex
+                        <div onClick={()=>openLink(user?.linkedin ?? '')} className="bg-slate-300 flex
                         rounded-full px-2 text-center  justify-center py-1 items-center  space-x-2  cursor-pointer">
                             <BsLinkedin/> <span className="hidden md:flex">LinkedIn</span>
                         </div>}   
                         {user?.twitter &&  
-                        <div onClick={()=>openLink(user?.twitter ?? '')} className="bg-orange-600 flex
+                        <div onClick={()=>openLink(user?.twitter ?? '')} className="bg-slate-300 flex
                         rounded-full px-2 text-center  py-1 items-center justify-center  space-x-2  cursor-pointer">
                             <BsTwitterX/> <span className="hidden md:flex">X(Twitter)</span>
                         </div>}                  
                         {user?.instagram &&  
-                        <div onClick={()=>openLink(user?.twitter ?? '')} className="bg-orange-600 flex
+                        <div onClick={()=>openLink(user?.twitter ?? '')} className="bg-slate-300 flex
                         rounded-full px-2 text-center justify-center  py-1 items-center  space-x-2  cursor-pointer">
-                            <BsInstagram/> <span className="hidden md:flex">Instagram</span>
+                            <BsInstagram className="text-fuchsia-700"/> <span className="hidden md:flex">Instagram</span>
                         </div>}  
            </div>
           
           
-        <div className="md:mt-12 mt-5 md:pt-8 pt-4 bg-gradient-to-tr from-orange-700 via-orange-700 to-orange-400 rounded-xl ">
+        <div className="md:mt-12 mt-5 md:pt-8 pt-4 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 rounded-xl ">
         <div className="flex justify-center font-bold  md:text-5xl text-2xl">
                 Catalogue
             </div>
         <div className="flex justify-center" id="catalogue"> 
             <div className="md:w-[900px] w-full  px-2 md:py-16 py-5 sm:px-0   ">
                 <Tab.Group>
-                    <Tab.List className="flex space-x-1 rounded-xl border border-white p-1">
+                    <Tab.List className="flex space-x-1 rounded-xl border border-black p-1">
                     
                     {Object.keys(categories).map((category) => (
                         <Tab
                         key={category}
                         className={({ selected }) =>
                             classNames(
-                            'w-full rounded-lg py-2.5 text-sm font-medium hover:bg-orange-600',
+                            'w-full rounded-lg py-2.5 text-sm font-medium hover:bg-slate-300',
                             selected
-                                ? 'bg-orange-600'
+                                ? 'bg-slate-300'
                                 : ''
                             )
                           }
@@ -174,7 +172,7 @@ export default function Page({slug} : {slug: string}){
                     {Object.values(categories).map((posts, idx) => (
                         <Tab.Panel
                         key={idx}
-                        className={'rounded-xl p-3 bg-blue-900/20'}
+                        className={'rounded-xl p-3 bg-slate-300'}
                         >
                           {posts.length == 0 && <div className="flex justify-center  text-black font-bold">Aucun items disponible</div>}
                         <ul className="grid gap-4 md:grid-cols-3 grid-cols-1">
