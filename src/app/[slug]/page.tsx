@@ -1,17 +1,17 @@
-import Data from "@/components/Data";
 import { baseUrl } from "@/components/url";
 import { User } from "@/models/User";
 import axios from "axios";
 import { Metadata } from "next";  
-    type Props = {
-      params: { slug: string }
-    }
-  
-    export async function generateMetadata(
+import "../../styles/globals.css";
+import CartlyThree from "@/components/template/CartlyThree";
+
+type Props = {
+    params: { slug: string }
+}
+export async function generateMetadata(
       { params }: Props
     ): Promise<Metadata> {
       const slug = params.slug
-      
       const response = await   axios.post(`${baseUrl}accounts/key/web/scan`,{key : slug});
       let user : User = response.data.data.account
       return {
@@ -25,6 +25,6 @@ import { Metadata } from "next";
 export default  function Page({ params }: { params: { slug: string } }){
 
     return (
-         <Data slug={params.slug}/>
+         <CartlyThree slug={params.slug}/>
     )
 }

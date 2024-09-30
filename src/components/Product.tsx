@@ -11,8 +11,9 @@ import {
   } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
-export default function ProductCard({image, title , description, email , whatsapp} : 
-    {image : string, title : string, description : string, email? : string , whatsapp? : string}){
+export default function ProductCard({image, title , description, email , whatsapp, color,background, border } : 
+    {image : string, title : string, description : string, email? : string , whatsapp? : string,
+         color? : string, background? : string , border? : string}){
     const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
     const router = useRouter();
     const truncateData = (texte : string)=>{
@@ -37,13 +38,15 @@ export default function ProductCard({image, title , description, email , whatsap
             <div>
                 <img src={image} className="rounded-md md:h-[250px] w-full" alt="" />
             </div>
-            <div className="text-center font-bold h-12 mt-2 md:text-sm text-xs text-black flex items-center justify-center">
+            <div className="text-center font-bold h-12 mt-2 md:text-sm text-lg text-black flex items-center justify-center">
                 {truncateData(title)}
             </div>
             <div>
                 <div onClick={()=>{
                     onOpen();
-                }} className="p-2 text-center shadow rounded-md cursor-pointer w-full hover:bg-slate-300 border border-black font-bold text-black">Voir</div>
+                }} className="p-2 text-center shadow rounded-md cursor-pointer w-full text-white border border-black font-bold" style={{backgroundColor : border == null ? color : undefined, borderColor : border ?? undefined, color : border ? color : undefined}}>
+                    Voir
+                </div>
                 <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
                     <ModalContent>
                     {(onClose) => (
