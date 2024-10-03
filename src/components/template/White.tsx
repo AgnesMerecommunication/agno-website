@@ -164,8 +164,12 @@ export default function Page({slug} : {slug: string}){
                 </div>
               </div>
               <div className="md:w-2/5 w-full p-2 flex flex-col justify-center items-center">
-              {imageUrl && <img src={imageUrl} alt="" 
-                     className="md:h-96 md:w-96  h-56 w-56 rounded-full" />}
+              {/*imageUrl &&<img src={imageUrl} alt=""  
+                     className="md:h-96 md:w-96  h-56 w-56 rounded-full md:hidden" />*/}
+              {imageUrl &&<Image src={imageUrl}  alt={"Image de profil"} height={224} className="rounded-full md:hidden"/>}
+              {imageUrl &&<Image src={imageUrl} alt={"Image de profil"} height={384} className="rounded-full hidden md:flex"/>}
+                  {/*imageUrl && <img src={imageUrl} alt=""  
+                     className="md:h-96 md:w-96  h-56 w-56 " />*/}
               </div>
            </div>
            
