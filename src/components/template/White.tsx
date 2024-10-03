@@ -83,6 +83,10 @@ export default function Page({slug} : {slug: string}){
         link.as = 'image';
         link.href = imageUrl;
         document.head.appendChild(link);
+        // Nettoyage : retirer le lien au démontage
+      return () => {
+        document.head.removeChild(link);
+      };
       }
     }, [imageUrl]);
       const openLink = (link : string)=>{
