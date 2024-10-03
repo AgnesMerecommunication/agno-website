@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "analyze": "ANALYZE=true next build"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@next/bundle-analyzer": "^14.2.14",
     "@nextui-org/react": "^2.2.9",
     "axios": "^1.7.2",
     "eslint": "8.41.0",

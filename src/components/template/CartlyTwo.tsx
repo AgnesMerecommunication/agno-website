@@ -9,9 +9,8 @@ import axios from "axios";
 import { baseUrl } from "../url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
-import { BiMessage, BiSolidMessage } from "react-icons/bi";
+import { BiMessage } from "react-icons/bi";
 import CatalogueCard from "../Catalogue";
-import { Tabs } from "@nextui-org/react";
 
 // @ts-ignore
 function classNames(...classes) {

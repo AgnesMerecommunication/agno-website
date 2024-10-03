@@ -12,15 +12,15 @@ type Props = {
 export async function generateMetadata(
       { params }: Props
     ): Promise<Metadata> {
-      const slug = params.slug
+      /*const slug = params.slug
       const response = await   axios.post(`${baseUrl}accounts/key/web/scan`,{key : slug});
-      let user : User = response.data.data.account
+      let user : User = response.data.data.account*/
       return {
-        title:user ? (user.firstName) : '' ,
+        title:'Mon porfolio' ,
         description: "Découvrez mon parcours, mes services sur mesure et les produits innovants que je propose, en visitant mon site web.",
         applicationName  : "Agno",
         robots : "Agno",
-        icons : user.picture
+        icons : 'logoagno.png'
       }
     }
 export default  function Page({ params }: { params: { slug: string } }){
