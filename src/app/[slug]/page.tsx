@@ -4,6 +4,7 @@ import axios from "axios";
 import { Metadata } from "next";  
 import "../../styles/globals.css";
 import Home from "@/components/template/Home";
+import White from "@/components/template/White";
 
 type Props = {
     params: { slug: string }
@@ -25,6 +26,6 @@ export async function generateMetadata(
 export default  function Page({ params }: { params: { slug: string } }){
 
     return (
-         <Home slug={params.slug}/>
+         <White slug={params.slug}/>
     )
 }
