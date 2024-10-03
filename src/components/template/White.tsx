@@ -13,7 +13,7 @@ import { Product } from "@/models/Product";
 import { User } from "@/models/User";
 import { BiMessage } from "react-icons/bi";
 import CatalogueCard from "../Catalogue";
-
+import Image from "next/image";
 
 //@ts-ignore
 function classNames(...classes) {
@@ -34,6 +34,7 @@ export default function Page({slug} : {slug: string}){
     const [color, setColor] = useState<string | undefined>();
     const [textColor, setTextColor] = useState<string | undefined>("#FFFFFF");
     const [vcf , setVcf]= useState<string | undefined>();  
+    const [loading,setLoading] = useState(true);
    
   
   
@@ -63,6 +64,7 @@ export default function Page({slug} : {slug: string}){
             Catalogues: responseData.products.filter((item)=>item.type == "CATALOG"),
           })
         }
+        setLoading(false);
       }).catch(error=>{
         setColor("#242834");
       });
@@ -77,6 +79,37 @@ export default function Page({slug} : {slug: string}){
       const openCarte = () =>{
         window.open(carte, '_blank');
       }
+
+      if(loading)
+        return(
+          <div className="h-screen flex justify-center items-center relative">
+          <div className="relative">
+              <Image src="/logoagno.png" alt="Logo d'Agno" width={100} height={50} />
+              <div className="loader"></div>
+          </div>
+      
+          <style jsx>{`
+              .loader {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  width: 150px; /* Ajuste la taille du cercle de chargement */
+                  height: 150px;
+                  border: 5px solid rgba(255, 255, 255, 0.5);
+                  border-top: 5px solid #EA7D0A; /* Couleur du cercle */
+                  border-radius: 50%;
+                  animation: spin 1s linear infinite;
+                  transform: translate(-50%, -50%);
+              }
+      
+              @keyframes spin {
+                  0% { transform: translate(-50%, -50%) rotate(0deg); }
+                  100% { transform: translate(-50%, -50%) rotate(360deg); }
+              }
+          `}</style>
+      </div>
+      
+        )
       return(
         <div 
         className={`bg-white text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-slate-800`}>
