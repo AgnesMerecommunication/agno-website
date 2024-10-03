@@ -3,7 +3,7 @@ import { User } from "@/models/User";
 import axios from "axios";
 import { Metadata } from "next";  
 import "../../styles/globals.css";
-import CartlyThree from "@/components/template/CartlyThree";
+import Home from "@/components/template/Home";
 
 type Props = {
     params: { slug: string }
@@ -25,6 +25,6 @@ export async function generateMetadata(
 export default  function Page({ params }: { params: { slug: string } }){
 
     return (
-         <CartlyThree slug={params.slug}/>
+         <Home slug={params.slug}/>
     )
 }
