@@ -1,7 +1,7 @@
 
 
 "use client"
-import { BsFacebook, BsWhatsapp, BsEnvelope, BsTelephone, BsLinkedin, BsTwitter, BsTwitterX, BsInstagram, BsSun, BsMoon, BsMap, BsMessenger} from "react-icons/bs";
+import { BsFacebook, BsWhatsapp, BsEnvelope, BsTelephone, BsLinkedin, BsTwitterX, BsInstagram, BsMap} from "react-icons/bs";
 import { Tab } from '@headlessui/react'
 import { useEffect, useState } from "react";
 import ProductCard from "../Product";
@@ -11,7 +11,7 @@ import axios from "axios";
 import { baseUrl } from "../url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
-import { BiMessage, BiSolidMessage } from "react-icons/bi";
+import { BiMessage } from "react-icons/bi";
 import CatalogueCard from "../Catalogue";
 
 
@@ -79,36 +79,38 @@ export default function Page({slug} : {slug: string}){
       }
       return(
         <div 
-        className={`bg-white		 text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-slate-800`}>
-           <div className="shadow-xl md:px-12 px-2 md:py-20 py-6 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 rounded-xl flex md:flex-row flex-row-reverse">
-              <div className="md:w-3/5 w-1/2"> 
-                <div className="`font-bold mb-2 md:mt-12 md:text-7xl text-sm">{user?.firstName}</div>
-                <div className="md:text-2xl text-xs">{user?.businessName}</div>
-                <div className="md:text-xl space-y-2 text-sm ">
-                <div onClick={()=>openLink("mailto: " + user?.email)}
-                        className=" md:mt-12 md:px-2 py-1 space-x-2 cursor-pointer   text-xs md:text-base flex items-center">
-                            <BsEnvelope className=""/> 
-                            <span className="break-words whitespace-normal">{user?.email}</span>
+        className={`bg-white text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-slate-800`}>
+           <div className="shadow-xl md:px-12 px-2 md:py-20 py-6 bg-gradient-to-tr from-slate-200 via-slate-200
+            to-slate-50 rounded-xl flex md:flex-row flex-col-reverse">
+              <div className="md:w-3/5 w-full"> 
+                <div className="`font-bold mb-2 md:mt-12 md:text-7xl text-4xl flex justify-center md:justify-start">
+                  {user?.firstName}
                 </div>
+                <div className="md:text-2xl text-xs flex justify-center md:justify-start">{user?.businessName}</div>
+                <div className="md:text-xl space-y-2 text-sm ">
+                  <div onClick={()=>openLink("mailto: " + user?.email)}
+                          className=" md:mt-12 md:px-2 py-1 space-x-2 cursor-pointer 
+                            text-xs md:text-base flex items-center  justify-center md:justify-start">
+                              <BsEnvelope className=""/> 
+                              <span className="break-words whitespace-normal">{user?.email}</span>
+                  </div>
                   <div onClick={()=>openLink("tel: " + user?.email)}
-                        className="md:px-2 py-1 space-x-2 cursor-pointer text-xs md:text-base flex items-center ">
+                        className="md:px-2 py-1 space-x-2 cursor-pointer text-xs md:text-base flex items-center  justify-center md:justify-start">
                              <BsTelephone /> <span className="truncate text-wrap">{user?.phone}</span>
                   </div>
-  
                     {user?.address && <div onClick={()=>openLink("mailto: " + user?.email)}
-                        className="flex md:px-2 py-1 items-center space-x-2 text-xs md:text-base cursor-pointer">
+                        className="flex md:px-2 py-1 items-center space-x-2 text-xs md:text-base cursor-pointer  justify-center md:justify-start">
                             <BsMap/> <span className="truncate text-wrap">{user?.address}</span>
                         </div>}
-                  
-                  </div>
-                  <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md md:p-4 p-2 bg-slate-300  text-xs md:text-xl md:w-1/2 cursor-pointer">
+                </div>
+                <div onClick={()=>openVcf()}  className="border md:mt-12 mt-7 text-center rounded-md md:p-4 p-2 bg-slate-300  text-xs md:text-xl md:w-1/2 cursor-pointer">
                            Telecharger mon contact
-                  </div>
-                  <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md md:p-4 p-2 bg-slate-300 text-xs md:text-xl md:w-1/2 cursor-pointer">
+                </div>
+                <div onClick={()=>openCarte()}   className="border md:mt-4 mt-2 text-center rounded-md md:p-4 p-2 bg-slate-300 text-xs md:text-xl md:w-1/2 cursor-pointer">
                           Telercharger la carte
-                  </div>
+                </div>
               </div>
-              <div className="md:w-2/5 w-1/2 p-2 flex justify-center items-center">
+              <div className="md:w-2/5 w-full p-2 flex flex-col justify-center items-center">
               <img src={user?.picture} alt="" 
                      className="md:h-96 md:w-96  h-56 w-56 rounded-full" />
               </div>
