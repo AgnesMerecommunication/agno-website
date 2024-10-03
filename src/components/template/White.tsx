@@ -75,7 +75,7 @@ export default function Page({slug} : {slug: string}){
         setColor("#242834");
       });
     },[])
-
+/*
     useEffect(() => {
       if (imageUrl) {
         const link = document.createElement('link');
@@ -88,7 +88,7 @@ export default function Page({slug} : {slug: string}){
         document.head.removeChild(link);
       };
       }
-    }, [imageUrl]);
+    }, [imageUrl]);*/
       const openLink = (link : string)=>{
         router.push(link);
       }
