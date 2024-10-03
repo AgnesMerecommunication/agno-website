@@ -14,6 +14,8 @@ import { User } from "@/models/User";
 import { BiMessage } from "react-icons/bi";
 import CatalogueCard from "../Catalogue";
 import Image from "next/image";
+import Head from 'next/head';
+
 
 //@ts-ignore
 function classNames(...classes) {
@@ -35,6 +37,7 @@ export default function Page({slug} : {slug: string}){
     const [textColor, setTextColor] = useState<string | undefined>("#FFFFFF");
     const [vcf , setVcf]= useState<string | undefined>();  
     const [loading,setLoading] = useState(true);
+    const [imageUrl, setImageUrl] = useState('');
    
   
   
@@ -53,6 +56,9 @@ export default function Page({slug} : {slug: string}){
           carteInformation : data.businessCard,
           vcf : data.vcf
         }
+        if(responseData.user!.picture){
+          setImageUrl(responseData.user!.picture);
+        }
         setUser(responseData.user);
         setCarte(responseData.carte);
         setVcf(responseData.vcf);
@@ -69,6 +75,16 @@ export default function Page({slug} : {slug: string}){
         setColor("#242834");
       });
     },[])
+
+    useEffect(() => {
+      if (imageUrl) {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = imageUrl;
+        document.head.appendChild(link);
+      }
+    }, [imageUrl]);
       const openLink = (link : string)=>{
         router.push(link);
       }
@@ -144,8 +160,8 @@ export default function Page({slug} : {slug: string}){
                 </div>
               </div>
               <div className="md:w-2/5 w-full p-2 flex flex-col justify-center items-center">
-              <img src={user?.picture} alt="" 
-                     className="md:h-96 md:w-96  h-56 w-56 rounded-full" />
+              {imageUrl && <img src={imageUrl} alt="" 
+                     className="md:h-96 md:w-96  h-56 w-56 rounded-full" />}
               </div>
            </div>
            
