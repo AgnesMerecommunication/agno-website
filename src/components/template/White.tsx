@@ -32,7 +32,7 @@ export default function Page({slug} : {slug: string}){
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [user, setUser] = useState<User>();
     const [carte , setCarte] = useState<string>();
-    const [categories, setCategories] = useState<Categorie | undefined>({Produits : [],Services : [], Portfolio : [],Catalogues : []})
+    const [categories, setCategories] = useState<Categorie>({Produits : [],Services : [], Portfolio : [],Catalogues : []})
     const [color, setColor] = useState<string | undefined>();
     const [textColor, setTextColor] = useState<string | undefined>("#FFFFFF");
     const [vcf , setVcf]= useState<string | undefined>();  
@@ -201,7 +201,7 @@ export default function Page({slug} : {slug: string}){
                         </div>}  
            </div>
           
-          {categories && <div>
+       <div>
           <div className="md:mt-12 mt-5 md:pt-8 pt-4 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 rounded-xl ">
           <div className="flex justify-center font-bold  md:text-5xl text-2xl">
                   Catalogue
@@ -251,7 +251,7 @@ export default function Page({slug} : {slug: string}){
               </div>
           </div>
           </div>
-        </div>}
+        </div>
         
 
         </div>
