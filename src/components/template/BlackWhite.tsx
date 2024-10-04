@@ -148,7 +148,7 @@ export default function Page({slug} : {slug: string}){
                                     Telercharger la carte
                             </div>
                     </div>
-                    <img src={user?.picture}   alt="Image" 
+                    <img src={user?.picture +"?download=true"}   alt="Image" 
                     className="md:h-80 md:w-80 h-48 w-48 mt-2 mr-2 rounded-full"/>
                          <div className="absolute  md:w-full h-56 w-full md:h-[400px] "  style={{backgroundColor : color, opacity : 0.1}}>
 
@@ -192,7 +192,7 @@ export default function Page({slug} : {slug: string}){
                               post.title == "CATALOG" ?<CatalogueCard 
                               whatsapp={user?.whatsapp} title={post.title} email={user?.email} image={post.picture}/> :
                             <ProductCard key={index} whatsapp={user?.whatsapp} 
-                            image={post.picture} title={post.title} color={color}
+                            image={post.picture +"?download=true"} title={post.title} color={color}
                             description={post.description} email={user?.email} border={color}/>
                             ))}
                         </ul>
