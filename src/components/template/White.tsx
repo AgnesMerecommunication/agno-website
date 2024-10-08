@@ -12,11 +12,12 @@ import { baseUrl } from "../url";
 import { Product } from "@/models/Product";
 import { User } from "@/models/User";
 import { BiMessage } from "react-icons/bi";
-import CatalogueCard from "../Catalogue";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
 
-const ComposantImageHeader = dynamic(() => import('../whitecomponents/ImageHeader'));
+const ComponentImageHeader = dynamic(() => import('../whitecomponents/ImageHeader'), {ssr : true});
+const ComponentCatalogue = dynamic(() => import('../whitecomponents/Catalogue'),{ssr : true});
+
 
 //@ts-ignore
 function classNames(...classes) {
@@ -166,7 +167,7 @@ export default function Page({slug} : {slug: string}){
                     Telecharger la carte
                 </div>
             </div>
-           <ComposantImageHeader imageUrl={imageUrl!}/>
+           <ComponentImageHeader imageUrl={imageUrl!}/>
         </div>
     
         <div className="md:mt-12 mt-5 shadow-xl rounded-xl md:p-12 p-4 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 grid gap-4 md:grid-cols-5 grid-cols-4">
@@ -199,28 +200,7 @@ export default function Page({slug} : {slug: string}){
             <div className="flex justify-center font-bold md:text-5xl text-2xl">Catalogue</div>
             <div className="flex justify-center" id="catalogue"> 
                 <div className="md:w-[900px] w-full px-2 md:py-16 py-5 sm:px-0">
-                    <Tab.Group>
-                        <Tab.List className="flex space-x-1 rounded-xl border border-black p-1">
-                            {Object.keys(categories).map((category) => (
-                                <Tab key={category} className={({ selected }) => classNames('w-full rounded-lg py-2.5 text-sm font-medium hover:bg-slate-300', selected ? 'bg-slate-300' : '')}>
-                                    {category}
-                                </Tab>
-                            ))}
-                        </Tab.List>
-                        <Tab.Panels className="mt-2">
-                            {Object.values(categories).map((posts, idx) => (
-                                <Tab.Panel key={idx} className={'rounded-xl p-3 bg-slate-300'}>
-                                    {posts.length === 0 && <div className="flex justify-center text-black font-bold">Aucun items disponible</div>}
-                                    <ul className="grid gap-4 md:grid-cols-3 grid-cols-1">
-                                        {posts.map((post, index) => (
-                                            post.title === "CATALOG" ? <CatalogueCard whatsapp={user?.whatsapp} title={post.title} email={user?.email} image={post.picture} /> :
-                                            <ProductCard key={index} whatsapp={user?.whatsapp} image={post.picture} title={post.title} description={post.description} email={user?.email} />
-                                        ))}
-                                    </ul>
-                                </Tab.Panel>
-                            ))}
-                        </Tab.Panels>
-                    </Tab.Group>
+                  <ComponentCatalogue categories={categories} user={user}/>
                 </div>
             </div>
         </div>
