@@ -27,21 +27,22 @@ function classNames(...classes) {
     Catalogues: Product[],
     Portfolio : Product[]
   }
-export default function Page({slug} : {slug: string}){
+export default function Page({slug, categories,textColor,user, carte, vcf,imageUrl} : 
+    {slug: string, categories : Categorie, textColor : string,user : User, carte : string, vcf : string,imageUrl : string}){
     const router = useRouter();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [user, setUser] = useState<User>();
-    const [carte , setCarte] = useState<string>();
-    const [categories, setCategories] = useState<Categorie>({Produits : [],Services : [], Portfolio : [],Catalogues : []})
+    //const [user, setUser] = useState<User>();
+    //const [carte , setCarte] = useState<string>();//{Produits : [],Services : [], Portfolio : [],Catalogues : []}
+    //const [categories, setCategories] = useState<Categorie>(categoriesProps)
     const [color, setColor] = useState<string | undefined>();
-    const [textColor, setTextColor] = useState<string | undefined>("#FFFFFF");
-    const [vcf , setVcf]= useState<string | undefined>();  
-    const [loading,setLoading] = useState(true);
-    const [imageUrl, setImageUrl] = useState<string| undefined>();
+   // const [textColor, setTextColor] = useState<string | undefined>(textColorProps);
+    //const [vcf , setVcf]= useState<string | undefined>();  
+    const [loading,setLoading] = useState(false);
+    //const [imageUrl, setImageUrl] = useState<string| undefined>();
    
   
   
-    useEffect(()=>{
+    /*useEffect(()=>{
       axios.post(`${baseUrl}accounts/key/web/scan`,{key : slug}).then((response)=>{
         let data = response.data.data;
         let color =data.account.color; 
@@ -75,7 +76,7 @@ export default function Page({slug} : {slug: string}){
       }).catch(error=>{
         setColor("#242834");
       });
-    },[])
+    },[])*/
 /*
     useEffect(() => {
       if (imageUrl) {
