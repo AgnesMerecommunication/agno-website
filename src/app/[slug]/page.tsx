@@ -56,16 +56,7 @@ export default async  function Page({ params }: { params: { slug: string } }){
         Portfolio :responseData.products.filter((item)=>item.type == "PORTFOLIO"),
         Catalogues: responseData.products.filter((item)=>item.type == "CATALOG"),
       };
-      const openLink = (link : string)=>{
-       // router.push(link);
-      }
-      const openVcf = ()=>{
-       // var contactsUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcf ?? '');
-       // window.location.href = contactsUrl; 
-      }
-      const openCarte = () =>{
-      //  window.open(carte, '_blank');
-      }
+    
   
       return (
         <WhiteSSR slug={params.slug} categories={categories} textColor={textColor!} user={user!} carte={carte!} vcf={vcf!} imageUrl={imageUrl}/>
