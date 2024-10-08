@@ -15,8 +15,8 @@ import { BiMessage } from "react-icons/bi";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
 
-const ComponentImageHeader = dynamic(() => import('../whitecomponents/ImageHeader'), {ssr : false});
-const ComponentCatalogue = dynamic(() => import('../whitecomponents/Catalogue'),{ssr : false});
+const ComponentImageHeader = dynamic(() => import('../whitecomponents/ImageHeader'), {ssr : true});
+const ComponentCatalogue = dynamic(() => import('../whitecomponents/Catalogue'),{ssr : true});
 
 
 //@ts-ignore
