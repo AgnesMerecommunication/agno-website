@@ -10,6 +10,7 @@ import {
     Button
   } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function ProductCard({image, title , description, email , whatsapp, color,background, border } : 
     {image : string, title : string, description : string, email? : string , whatsapp? : string,
@@ -36,7 +37,12 @@ export default function ProductCard({image, title , description, email , whatsap
     return(
         <div className="text-black  p-3 rounded-xl">
             <div>
-                <img src={image + "?download=true"} loading="lazy" className="rounded-md md:h-[250px] w-full" alt="" />
+                <div className="md:h-[250px] w-full">
+                    <Image src={image + "?download=true"}  alt="Image de profil" 
+                        loading="lazy"   layout="fill" objectFit="cover" 
+                        className="rounded-md"/>
+                </div>
+          
             </div>
             <div className="text-center font-bold h-12 mt-2 md:text-sm text-lg text-black flex items-center justify-center">
                 {truncateData(title)}
