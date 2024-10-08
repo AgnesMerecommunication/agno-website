@@ -47,7 +47,7 @@ export default async  function Page({ params }: { params: { slug: string } }){
         carteInformation : data.businessCard,
         vcf : data.vcf
       }
-      let imageUrl =  await compresseFile(responseData.user!.picture + "?download=true");
+      let imageUrl =  responseData.user!.picture;//await compresseFile(responseData.user!.picture + "?download=true");
       let user = responseData.user;
       let carte = responseData.carte;
       let vcf = responseData.vcf;
