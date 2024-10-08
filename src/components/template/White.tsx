@@ -37,7 +37,7 @@ export default function Page({slug} : {slug: string}){
     const [textColor, setTextColor] = useState<string | undefined>("#FFFFFF");
     const [vcf , setVcf]= useState<string | undefined>();  
     const [loading,setLoading] = useState(true);
-    const [imageUrl, setImageUrl] = useState('');
+    const [imageUrl, setImageUrl] = useState<string| undefined>();
    
   
   
@@ -58,6 +58,7 @@ export default function Page({slug} : {slug: string}){
         }
         if(responseData.user!.picture){
           setImageUrl(responseData.user!.picture);
+        
         }
         setUser(responseData.user);
         setCarte(responseData.carte);
@@ -134,7 +135,7 @@ export default function Page({slug} : {slug: string}){
         <div className={`bg-white text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-slate-800`}>
         <div className="shadow-xl md:px-12 px-4 py-6 md:py-12 
         bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 rounded-xl flex md:flex-row flex-col-reverse">
-            <div className="md:w-3/5 w-full"> 
+            <div id="afterImage" className="md:w-3/5 w-full"> 
                 <div className="font-bold mb-2 md:mt-12 text-center md:text-left md:text-7xl text-4xl">
                     {user?.firstName}
                 </div>
@@ -164,9 +165,9 @@ export default function Page({slug} : {slug: string}){
                     Telecharger la carte
                 </div>
             </div>
-            <div className="md:w-2/5 w-full p-2 flex flex-col justify-center items-center">
+          <div className="md:w-2/5 w-full p-2 flex flex-col justify-center items-center">
                 <div className="md:h-96 md:w-96 h-56 w-56">
-                    <Image src={imageUrl} alt="Image de profil" height={384} width={384} className="rounded-full" sizes="(max-width: 768px) 100vw"/>
+                    {imageUrl && <Image src={imageUrl} alt="Image de profil" height={384} width={384} className="rounded-full" sizes="(max-width: 768px) 100vw"/>}
                 </div>
             </div>
         </div>
