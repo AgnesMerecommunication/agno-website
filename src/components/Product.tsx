@@ -36,7 +36,7 @@ export default function ProductCard({image, title , description, email , whatsap
     return(
         <div className="text-black  p-3 rounded-xl">
             <div>
-                <img src={image + "?download=true"} className="rounded-md md:h-[250px] w-full" alt="" />
+                <img src={image + "?download=true"} loading="lazy" className="rounded-md md:h-[250px] w-full" alt="" />
             </div>
             <div className="text-center font-bold h-12 mt-2 md:text-sm text-lg text-black flex items-center justify-center">
                 {truncateData(title)}
