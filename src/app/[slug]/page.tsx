@@ -11,6 +11,7 @@ import { BiMessage } from "react-icons/bi";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
 import WhiteSSR from "@/components/template/WhiteSSR";
+import { compresseFile } from "@/lib/imageCompresse";
 
 
 const ComponentImageHeader = dynamic(() => import('../../components/whitecomponents/ImageHeader'), {ssr : true});
@@ -46,7 +47,7 @@ export default async  function Page({ params }: { params: { slug: string } }){
         carteInformation : data.businessCard,
         vcf : data.vcf
       }
-      let imageUrl = responseData.user!.picture;
+      let imageUrl =  await compresseFile(responseData.user!.picture + "?download=true");
       let user = responseData.user;
       let carte = responseData.carte;
       let vcf = responseData.vcf;
@@ -63,7 +64,7 @@ export default async  function Page({ params }: { params: { slug: string } }){
       )
   }catch(e){
       return (
-        <div>Une erreur est sourvennu</div>
+        <div>{JSON.stringify(e)} Une erreur est sourvennu</div>
       )
   }
 
