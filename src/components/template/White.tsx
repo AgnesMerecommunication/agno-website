@@ -132,7 +132,8 @@ export default function Page({slug} : {slug: string}){
         )
       return(
         <div className={`bg-white text-xs md:text-base md:px-24 px-2 md:pt-12 pt-8 pb-12 text-slate-800`}>
-        <div className="shadow-xl md:px-12 px-2 md:py-20 py-6 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 rounded-xl flex md:flex-row flex-col-reverse">
+        <div className="shadow-xl md:px-12 px-4 py-6 md:py-12 
+        bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 rounded-xl flex md:flex-row flex-col-reverse">
             <div className="md:w-3/5 w-full"> 
                 <div className="font-bold mb-2 md:mt-12 text-center md:text-left md:text-7xl text-4xl">
                     {user?.firstName}
@@ -226,6 +227,7 @@ export default function Page({slug} : {slug: string}){
             </div>
         </div>
     </div>
+    
     
     )
          
