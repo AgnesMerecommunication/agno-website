@@ -4,7 +4,7 @@ import { Product } from "@/models/Product";
 import { User } from "@/models/User";
 import CatalogueCard from "../Catalogue";
 // components/MonComposant.js
-type Categorie = {
+export type Categorie = {
     Produits: Product[],
     Services:  Product[],
     Catalogues: Product[],

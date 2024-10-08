@@ -2,31 +2,19 @@
 
 "use client"
 import { BsFacebook, BsWhatsapp, BsEnvelope, BsTelephone, BsLinkedin, BsTwitterX, BsInstagram, BsMap} from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter }  from 'next/navigation';
-import { ResponseData } from "@/models/ResponseData";
-import axios from "axios";
-import { baseUrl } from "../url";
-import { Product } from "@/models/Product";
 import { User } from "@/models/User";
 import { BiMessage } from "react-icons/bi";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
+import { Categorie } from "../whitecomponents/Catalogue";
 
 const ComponentImageHeader = dynamic(() => import('../whitecomponents/ImageHeader'), {ssr : true});
 const ComponentCatalogue = dynamic(() => import('../whitecomponents/Catalogue'),{ssr : true});
 
 
-//@ts-ignore
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-  type Categorie = {
-    Produits: Product[],
-    Services:  Product[],
-    Catalogues: Product[],
-    Portfolio : Product[]
-  }
+
 export default function Page({slug, categories,textColor,user, carte, vcf,imageUrl} : 
     {slug: string, categories : Categorie, textColor : string,user : User, carte : string, vcf : string,imageUrl : string}){
     const router = useRouter();
@@ -34,10 +22,10 @@ export default function Page({slug, categories,textColor,user, carte, vcf,imageU
     //const [user, setUser] = useState<User>();
     //const [carte , setCarte] = useState<string>();//{Produits : [],Services : [], Portfolio : [],Catalogues : []}
     //const [categories, setCategories] = useState<Categorie>(categoriesProps)
-    const [color, setColor] = useState<string | undefined>();
+   // const [color, setColor] = useState<string | undefined>();
    // const [textColor, setTextColor] = useState<string | undefined>(textColorProps);
     //const [vcf , setVcf]= useState<string | undefined>();  
-    const [loading,setLoading] = useState(false);
+    const [loading] = useState(false);
     //const [imageUrl, setImageUrl] = useState<string| undefined>();
    
   

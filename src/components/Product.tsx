@@ -44,7 +44,7 @@ export default function ProductCard({image, title , description, email , whatsap
             <div>
                 <div onClick={()=>{
                     onOpen();
-                }} className="p-2 text-center shadow rounded-md cursor-pointer w-full text-white border border-black font-bold" style={{backgroundColor : border == null ? color : undefined, borderColor : border ?? undefined, color : border ? color : undefined}}>
+                }} className="p-2 text-center shadow rounded-md cursor-pointer w-full text-black border border-black font-bold" style={{backgroundColor : border == null ? color : undefined, borderColor : border ?? undefined, color : border ? color : undefined}}>
                     Voir
                 </div>
                 <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
