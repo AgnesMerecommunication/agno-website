@@ -63,7 +63,7 @@ export default async  function Page({ params }: { params: { slug: string } }){
       )
   }catch(e){
       return (
-        <div>{JSON.stringify(e)}</div>
+        <div>Une erreur est sourvennu</div>
       )
   }
 
