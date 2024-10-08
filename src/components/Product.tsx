@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function ProductCard({image, title , description, email , whatsapp, color,background, border } : 
-    {image : string, title : string, description : string, email? : string , whatsapp? : string,
+    {image? : string, title : string, description : string, email? : string , whatsapp? : string,
          color? : string, background? : string , border? : string}){
     const {isOpen, onOpen, onOpenChange, onClose} = useDisclosure();
     const router = useRouter();
@@ -37,10 +37,12 @@ export default function ProductCard({image, title , description, email , whatsap
     return(
         <div className="text-black  p-3 rounded-xl">
             <div>
-                <div className="md:h-[250px] w-full">
-                    <Image src={image + "?download=true"}  alt="Image de profil" 
-                        loading="lazy"   layout="fill" objectFit="cover" 
-                        className="rounded-md"/>
+                <div className="md:h-[250px] w-full flex justify-center">
+                    {image && <Image src={image + "?download=true"}  alt="Image de profil" 
+                        loading="lazy" height={150} width={210}  
+                        sizes="(max-width: 768px) 100vw"
+                        className="rounded-md"/>}
+                    
                 </div>
           
             </div>
