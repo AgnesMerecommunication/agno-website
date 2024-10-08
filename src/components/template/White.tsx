@@ -14,8 +14,9 @@ import { User } from "@/models/User";
 import { BiMessage } from "react-icons/bi";
 import CatalogueCard from "../Catalogue";
 import Image from "next/image";
-import Head from 'next/head';
+import dynamic from 'next/dynamic';
 
+const ComposantImageHeader = dynamic(() => import('../whitecomponents/ImageHeader'));
 
 //@ts-ignore
 function classNames(...classes) {
@@ -165,11 +166,7 @@ export default function Page({slug} : {slug: string}){
                     Telecharger la carte
                 </div>
             </div>
-          <div className="md:w-2/5 w-full p-2 flex flex-col justify-center items-center">
-                <div className="md:h-96 md:w-96 h-56 w-56">
-                    {imageUrl && <Image src={imageUrl} alt="Image de profil" height={384} width={384} className="rounded-full" sizes="(max-width: 768px) 100vw"/>}
-                </div>
-            </div>
+           <ComposantImageHeader imageUrl={imageUrl!}/>
         </div>
     
         <div className="md:mt-12 mt-5 shadow-xl rounded-xl md:p-12 p-4 bg-gradient-to-tr from-slate-200 via-slate-200 to-slate-50 grid gap-4 md:grid-cols-5 grid-cols-4">
